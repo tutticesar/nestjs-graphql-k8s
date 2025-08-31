@@ -9,9 +9,27 @@ services:
       - .env
     environment:
       NODE_ENV: development
+      CHOKIDAR_USEPOLLING: "1"
+      CHOKIDAR_INTERVAL: "300"
     command: sh -c "npm install && npm run start:dev"
     volumes:
       - .:/app
       - /app/node_modules
     ports:
       - "3000:3000"
+
+  db:
+    image: postgres:16
+    container_name: postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: appdb
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
