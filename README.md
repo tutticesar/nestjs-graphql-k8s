@@ -1,54 +1,61 @@
-**Nest GraphQL K8s — Protótipo Didático**
+# Nest GraphQL K8s — Educational Prototype 🚀
 
-- **Objetivo:** estudar GraphQL com NestJS e, em seguida, empacotar e orquestrar com Kubernetes/Helm.
-- **Stack:** Node 20, NestJS 11, TypeScript. Futuro: GraphQL (Apollo), K8s manifests, Helm charts.
+A small, didactic project to learn GraphQL with NestJS and later package/orchestrate it with Kubernetes and Helm.
 
-**Estado Atual**
-- API NestJS mínima (GET / → "Hello World!").
-- Dockerfile multi-stage pronto para produção na porta `3000`.
-- `docker-compose.yml` focado em desenvolvimento leve (porta `3000`).
+## Goals 🎯
+- Learn GraphQL with NestJS (Apollo).
+- Prepare for Kubernetes deployment and Helm packaging.
 
-**Pré‑requisitos**
-- Docker e Docker Compose
-- Opcional: Node.js 20+ e npm (para rodar fora do Docker)
+## Tech Stack 🧰
+- Node.js 20, NestJS 11, TypeScript
+- Future: Apollo GraphQL, Kubernetes manifests, Helm charts
 
-**Rodando no Docker (Dev)**
-- Instalar dependências (primeira vez): `docker compose run --rm api-dev npm ci`
-- Subir a API: `docker compose up api-dev`
-- Acesse: `http://localhost:3000`
-- Verifique: `curl http://localhost:3000` → deve retornar `Hello World!`
+## Current Status ✅
+- Minimal NestJS API (GET `/` → "Hello World!").
+- Multi‑stage Dockerfile ready for production on port `3000`.
+- `docker-compose.yml` focused on lightweight development (port `3000`).
 
-Arquivos relevantes:
-- `docker-compose.yml`: serviço `api-dev` (dev com live-reload via `npm run start:dev`).
-- `Dockerfile`: build multi-stage para produção (expõe `3000`).
-- `.env`: contém `PORT=3000`.
+## Prerequisites 📋
+- Docker and Docker Compose
+- Optional: Node.js 20+ and npm (to run outside Docker)
 
-**Rodando Local (sem Docker)**
-- Instalar deps: `npm ci`
+## Quick Start (Docker Dev) 🐳
+- Install dependencies (first time): `docker compose run --rm api-dev npm ci`
+- Start the API: `docker compose up api-dev`
+- Access: `http://localhost:3000`
+- Verify: `curl http://localhost:3000` → should return `Hello World!`
+
+## Local Development (no Docker) 💻
+- Install deps: `npm ci`
 - Dev (watch): `npm run start:dev`
-- Prod (compilado): `npm run build && npm run start:prod`
+- Prod (compiled): `npm run build && npm run start:prod`
 
-**Estrutura**
-- `src/app.module.ts`: módulo raiz
-- `src/app.controller.ts`: rota GET `/` (Hello World)
-- `src/main.ts`: inicialização do Nest na porta `3000` em `0.0.0.0`
+## Project Structure 🧱
+- `src/app.module.ts`: root module
+- `src/app.controller.ts`: GET `/` (Hello World)
+- `src/main.ts`: Nest bootstrap, listens on port `3000` at `0.0.0.0`
 
-**Roteiro Próximo (Roadmap)**
+## Configuration ⚙️
+- `.env`: `PORT=3000`
+- `docker-compose.yml`: `api-dev` service using `npm run start:dev`
+- `Dockerfile`: multi‑stage build (production), exposes port `3000`
+
+## Roadmap 🧭
 - GraphQL (NestJS + Apollo)
-  - Escolha do approach: code‑first (decorators) vs schema‑first (SDL).
-  - Resolver de exemplo, tipos, inputs e playground em `/graphql`.
-- Qualidade e DX
-  - ESLint/Prettier (já configurados), testes unitários e e2e.
-- Contêiner e Imagens
-  - Ajustes no Dockerfile para dev target (opcional) e imagem prod enxuta.
-- Kubernetes / Helm
-  - Manifests (Deployment, Service, ConfigMap, Ingress, liveness/readiness, recursos).
-  - Helm chart com valores para `image`, `replicas`, `resources`, `env`.
+  - Choose approach: code‑first (decorators) vs schema‑first (SDL)
+  - Sample resolver, types, inputs, and playground at `/graphql`
+- Quality & DX
+  - ESLint/Prettier (already configured), unit and e2e tests
+- Containers & Images
+  - Optional dev target and lean prod image
+- Kubernetes / Helm ☸️
+  - Manifests: Deployment, Service, ConfigMap, Ingress, liveness/readiness, resources
+  - Helm chart with values for `image`, `replicas`, `resources`, `env`
 - CI/CD
-  - Pipeline para lint/test/build/push de imagem e deploy (opcional).
+  - Pipeline for lint/test/build/push and deploy (optional)
 
-**Comandos Úteis**
-- Subir dev: `docker compose up api-dev`
-- Parar e remover container avulso antigo: `docker stop <nome|id> && docker rm <nome|id>`
+## Useful Commands 🔧
+- Start dev: `docker compose up api-dev`
+- Stop/remove old standalone container: `docker stop <name|id> && docker rm <name|id>`
 
-Sugestões e incrementos são bem‑vindos — vamos evoluindo este README conforme adicionarmos GraphQL e os manifestos do Kubernetes.
+Contributions and ideas are welcome — we’ll evolve this README as we add GraphQL and Kubernetes manifests. 📝
